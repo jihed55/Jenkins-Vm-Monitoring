@@ -1,0 +1,15 @@
+import java.lang.management.* ;
+
+class ProcessCpuLoad 
+{
+  double ProcessCpuLoad ;
+  def ProcessCpuLoad (double sld)
+  {
+    this.ProcessCpuLoad = sld ;
+  }
+  
+}
+
+double ProcessCpuLoad  = ManagementFactory.getOperatingSystemMXBean().getProcessCpuLoad() ;
+def builder = new groovy.json.JsonBuilder(new ProcessCpuLoad (ProcessCpuLoad*100));
+println builder.toString();

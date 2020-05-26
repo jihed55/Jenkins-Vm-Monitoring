@@ -1,0 +1,15 @@
+import java.lang.management.* ;
+
+class SystemLoadAverage  
+{
+  double SystemLoadAverage  ;
+  def ProcessCpuLoad (double sld)
+  {
+    this.SystemLoadAverage  = sld ;
+  }
+  
+}
+
+double SystemLoadAverage   = ManagementFactory.getOperatingSystemMXBean().getSystemLoadAverage () ;
+def builder = new groovy.json.JsonBuilder(new ProcessCpuLoad (SystemLoadAverage *100));
+println builder.toString();

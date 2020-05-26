@@ -1,0 +1,5 @@
+import java.lang.management.* ;
+obj = ManagementFactory.getMemoryMXBean() ;
+obj2 = obj.getHeapMemoryUsage();
+def builder = new groovy.json.JsonBuilder(obj2);
+println builder.toString();

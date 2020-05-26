@@ -1,0 +1,29 @@
+class Agent 
+{
+  String agent_Name ;
+  String agent_ip_adress;
+  String status ;
+  Agent (agent,add,s)
+  {
+  this.agent_Name = agent ;
+  this.agent_ip_adress=add ;
+  this.status = s ;
+  }
+}
+def agent ;
+def add;
+def status ;
+hudson = Hudson.instance
+for (slave in hudson.slaves) {
+  if (slave.name = 'unix')
+{
+ agent = slave.name;
+ add = slave.launcher.host ;
+ status = slave.computer.online
+}
+ println "Slave name: ${slave.name} hostname: ${slave.launcher.host} online: ${slave.computer.online}"
+}
+def obj = new Agent (agent,add,status);
+
+def builder = new groovy.json.JsonBuilder(obj);
+println builder.toString();

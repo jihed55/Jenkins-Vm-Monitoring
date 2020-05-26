@@ -1,0 +1,18 @@
+slaveName = 'unix'; action = 'disconnect' ;
+for (slave in hudson.model.Hudson.instance.slaves)
+{
+  if (slave.name == slaveName)
+ {c = slave.getComputer();
+    if (action == 'disconnect' ){
+   c. disconnect();
+}
+else if (action == 'connect') {
+c.connect() ;
+
+}
+else{
+println 'verifier votre Action '
+}
+    
+ }
+}

@@ -1,0 +1,14 @@
+import java.lang.management.* ;
+
+class AvailableProcessors   
+{
+  double AvailableProcessors   ;
+  def AvailableProcessors  (double sld)
+  {
+    this.AvailableProcessors   = sld ;
+  }
+  
+}
+double AvailableProcessors    = ManagementFactory.getOperatingSystemMXBean().getAvailableProcessors  () ;
+def builder = new groovy.json.JsonBuilder(new ProcessCpuLoad (AvailableProcessors  * 100));
+println builder.toString();

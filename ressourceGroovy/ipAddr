@@ -1,0 +1,33 @@
+class Agent 
+{
+  String agentName ;
+  String agentipadress;
+  String status ;
+  String port ;
+  Agent (agent,add,s , p)
+  {
+  this.agentName = agent ;
+  this.agentipadress=add ;
+  this.status = s ;
+  this.port = p ;
+  }
+}
+def agent ;
+def add;
+def status ;
+def port ;
+hudson = Hudson.instance
+for (slave in hudson.slaves) {
+  if (slave.name == 'unix')
+{
+ agent = slave.name;
+ add = slave.launcher.host ;
+ port = slave.launcher.port ;
+ status = slave.computer.online
+}
+
+}
+def obj = new Agent (agent,add,status,port);
+
+def builder = new groovy.json.JsonBuilder(obj);
+println builder.toString();

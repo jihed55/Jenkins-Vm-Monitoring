@@ -1,0 +1,46 @@
+class AgentInfo 
+{
+ //String  OSDescription;
+ // String AgentVersion;
+  Date offlineTime;
+
+  String  offilneReason;
+  def AgentInfo(String offilneReason ,Date offlineTime  )
+  {
+     this .offilneReason= offilneReason;
+       this.offlineTime = offlineTime ;
+  }
+
+   
+    
+  
+
+  
+  
+  
+  
+}
+
+def R ;
+def Date time ; 
+
+for (aSlave in hudson.model.Hudson.instance.slaves)
+{
+  if (aSlave.name == 'unix')
+ 
+  {  def computer = aSlave.getComputer();
+/* def OSDescription=  computer.getOSDescription();
+   def AgentVersion = computer.getSlaveVersion();*/
+   R = computer.getOfflineCauseReason () ;
+   offilneCause = computer.getOfflineCause();
+   time = offilneCause.getTime();
+  }
+  
+}
+
+
+  
+
+def obj = new AgentInfo(R,time );
+def builder = new groovy.json.JsonBuilder(obj);
+println builder.toString();
